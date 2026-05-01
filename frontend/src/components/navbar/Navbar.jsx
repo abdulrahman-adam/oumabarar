@@ -52,7 +52,7 @@ const Navbar = () => {
           src="/logo.png"
           alt="logo"
           className="w-28 md:w-32"
-          style={{ height: "40px", width: "70px" }}
+          style={{ height: "50px", width: "60px" }}
         />
       </NavLink>
 

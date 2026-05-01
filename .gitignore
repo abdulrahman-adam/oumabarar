@@ -14,6 +14,7 @@ dist/
 build/
 frontend/build/
 backend/build/
+docs/docs.md
 
 # 🧪 Logs
 logs
