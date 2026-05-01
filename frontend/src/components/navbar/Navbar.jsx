@@ -49,7 +49,7 @@ const Navbar = () => {
       {/* --- LOGO --- */}
       <NavLink to="/" className="z-50">
         <img
-          src="/logo.png"
+          src={`${window.location.origin}/logo.png`}
           alt="logo"
           className="w-28 md:w-32"
           style={{ height: "50px", width: "60px" }}
@@ -207,7 +207,7 @@ const Navbar = () => {
               className="flex items-center gap-3 cursor-pointer"
             >
               <img
-                src="/logo.png"
+                src={`${window.location.origin}/logo.png`}
                 alt="logo"
                 className="w-28 md:w-32 cursor-pointer"
                 style={{ height: "40px", width: "60px" }}
