@@ -124,13 +124,16 @@ const TreeProductList = () => {
                 to={`${location.pathname.replace(/\/$/, "")}/${sub.path}`}
                 className="group flex flex-col items-center"
               >
-                <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden mb-4 bg-white shadow-sm border-2 border-transparent group-hover:border-orange-500 transition-all">
-                  <img
-                    src={sub.image || "/logo.jpeg"}
-                    alt={sub.text}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
+                <div 
+  className="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden mb-4 shadow-sm border-2 border-transparent group-hover:border-orange-500 transition-all"
+  style={{ backgroundColor: sub.bgColor || '#ffffff' }}
+>
+  <img
+    src={sub.image || "/logo.jpeg"}
+    alt={sub.text}
+    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+  />
+</div>
                 <span className="text-[10px] sm:text-[11px] font-bold text-gray-800 group-hover:text-orange-600 uppercase text-center">
                   {sub.text}
                 </span>
