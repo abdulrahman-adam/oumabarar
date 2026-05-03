@@ -33,7 +33,7 @@ const Hero = () => {
           
           {/* Maps Icon */}
           <a 
-            href="https://www.google.com/maps/place/64+Rue+Louis+Blanc,+75010+Paris/..." 
+            href="https://www.google.com/maps/place/12+Rue+Doudeauville,+75018+Paris/@48.8889825,2.3554566,17z/data=!3m1!4b1!4m6!3m5!1s0x47e66e64d6addfdb:0xfebe60e73d2c6f96!8m2!3d48.888979!4d2.3580315!16s%2Fg%2F11pw1y2dxh?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D" 
             target="_blank" 
             rel="noopener noreferrer"
             className={`${iconBaseClass} w-10 bg-white border-gray-100`}
@@ -59,7 +59,7 @@ const Hero = () => {
 
           {/* Telephone Icon */}
           <a 
-            href="tel:0766422095" 
+            href="tel:07 49 99 24 87" 
             className={`${iconBaseClass} w-10 bg-white border-gray-100 delay-v2`}
           >
             <Phone size={26} className="text-green-600"/>
