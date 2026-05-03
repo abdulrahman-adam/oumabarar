@@ -224,26 +224,6 @@ export const placeOrderStripe = async (req, res) => {
 };
 
 
-// --- 6. Stripe Webhook ---
-// export const stripeWebhooks = async (request, response) => {
-//     const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY);
-//     const sig = request.headers["stripe-signature"];
-//     let event;
-
-//     try {
-//         event = stripeInstance.webhooks.constructEvent(request.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
-//     } catch (error) {
-//         return response.status(400).send(`Webhook Error: ${error.message}`);
-//     }
-
-//     if (event.type === "checkout.session.completed") {
-//         const { orderId, userId } = event.data.object.metadata;
-//         await Order.update({ isPaid: true, status: "Order Placed" }, { where: { id: orderId } });
-//         await User.update({ cartItems: "{}" }, { where: { id: userId } });
-//     }
-//     response.json({ received: true });
-//     console.log("🔥 Webhook received:", event.type);
-// };
 
 
 export const stripeWebhooks = async (request, response) => {

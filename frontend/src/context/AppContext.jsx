@@ -31,6 +31,14 @@ const [user, setUser] = useState(undefined);
   
   const [searchQuery, setSearchQuery] = useState("");
 
+    // --- Opening Hours State ---
+  const [shopStatus, setShopStatus] = useState({ 
+    status: "CHARGEMENT...", 
+    schedule: [], 
+    today: null 
+  });
+
+
   // --- AUTH & PROFILES ---
   const fetchSeller = async () => {
     try {
@@ -277,9 +285,51 @@ const fetchUser = async () => {
       toast.error(error.message);
     }
   };
+
+
+
+  
+  // --- Fetch Opening Hours & Status ---
+  const fetchShopStatus = async () => {
+    try {
+      const { data } = await axios.get("/api/hours/status");
+      // This will contain: { status, today, schedule }
+      setShopStatus(data);
+    } catch (error) {
+      console.error("Error fetching shop status:", error);
+    }
+  };
+
+
+
+  
+  // --- Update Opening Hours (Admin Only) ---
+  const updateShopHours = async (day, updatedData) => {
+    try {
+      const { data } = await axios.put(`/api/hours/update/${day}`, updatedData);
+      if (data.success || data.message) {
+        toast.success(`Horaires de ${day} mis à jour !`);
+        fetchShopStatus(); // Refresh data
+        return true;
+      }
+    } catch (error) {
+      toast.error("Erreur lors de la mise à jour");
+      return false;
+    }
+  };
+
+  // --- Add to Lifecycle ---
+  useEffect(() => {
+    fetchShopStatus();
+    // Optional: Refresh status every 5 minutes to keep "Closing Soon" accurate
+    const interval = setInterval(fetchShopStatus, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+
   const value = {
     currency, navigate, user, setUser, isSeller, setIsSeller, adminData,getChildCategories, setAdminData,contacts, getAllContacts,deleteProduct, deleteCategory,
-    products, categories, cartItems, setCartItems, orders, setOrders,deleteContact,
+    products, categories, cartItems, setCartItems, orders, setOrders,deleteContact,shopStatus, fetchShopStatus, updateShopHours,
     showUserLogin, setShowUserLogin, fetchUser, fetchOrders, fetchProducts,deleteOrder,addToCart, removeFromCart,
     fetchCategories, getCartCount, getCartAmount, updateCartItems, axios, searchQuery, setSearchQuery,clearCart
   };
