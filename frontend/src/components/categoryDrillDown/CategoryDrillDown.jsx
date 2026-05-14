@@ -59,7 +59,7 @@ const CategoryDrillDown = ({ onClose }) => {
           <img
             src={cat.image || "/logo.jpeg"}
             alt={cat.text}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover opacity-80 mix-blend-multiply" // Added mix-blend
           />
         </div>
         <span className="font-bold text-[11px] uppercase tracking-tight text-gray-700 group-hover:text-indigo-600 transition-colors text-center w-20 line-clamp-1">
