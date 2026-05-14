@@ -130,8 +130,12 @@ const TreeProductList = () => {
                 className="group flex flex-col items-center"
               >
                 <div
-                  className="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-sm border-1 border-transparent group-hover:border-orange-500 transition-all"
-                  style={{ backgroundColor: sub.bgColor || "#ffffff" }}
+                  className="w-48 h-48 rounded-full overflow-hidden mb-4 shadow-sm border-1 border-transparent group-hover:border-orange-500 transition-all"
+                  style={{ 
+  backgroundColor: sub?.bgColor?.startsWith('#') 
+    ? sub.bgColor 
+    : '#F3F4F6' // Professional light gray fallback (Tailwind gray-100)
+}}
                 >
                   <img
                     src={sub.image || "/logo.jpeg"}

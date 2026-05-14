@@ -106,7 +106,7 @@ const CategoryDrillDown = ({ onClose }) => {
               className="flex flex-col items-center group space-y-3 outline-none flex-shrink-0 snap-center"
             >
               {/* Circle styling to match Level 1 */}
-              <div className="relative w-32 h-32 rounded-full bg-gray-50 flex items-center justify-center border-1 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm" style={{ backgroundColor: child.bgColor || '#f3f4f6' }}>
+              <div className="relative w-48 h-48 rounded-full flex items-center justify-center border-1 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm" style={{ backgroundColor: child.bgColor || '#f3f4f6' }}>
                 <img
                   src={child.image || "/logo.jpeg"}
                   alt={child.text}
