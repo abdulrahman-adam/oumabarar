@@ -36,7 +36,7 @@ const CategoryDrillDown = ({ onClose }) => {
         </h3>
 
      {/* Horizontal Scroll Row */}
-<div className="w-full">
+<div className="w-full text-center" style={{border: "1px solid red"}}>
   {/* 1. Removed justify-center from this inner div. 
       2. Added 'after:content-[""] after:block after:w-6' to create a "ghost" spacer at the end.
       3. Kept flex-nowrap to ensure they stay in a line.
