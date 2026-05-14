@@ -48,14 +48,7 @@ const CategoryDrillDown = ({ onClose }) => {
         onClick={() => handleParentClick(cat)}
         className="flex flex-col items-center group space-y-3 outline-none flex-shrink-0 snap-center"
       >
-        <div
-          className="relative w-48 h-48 rounded-full flex items-center justify-center border-2 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm"
-          style={{ 
-  // Use a neutral gray that looks intentional during loading
-  backgroundColor: cat?.bgColor ? cat.bgColor : "#F9FAFB", 
-  transition: "background-color 0.3s ease-in-out" // Smoothes the transition if it changes
-}}
-        >
+      <div className="relative w-32 h-32 sm:w-32 sm:h-32 rounded-full bg-gray-50 flex items-center justify-center border-2 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm" style={{ backgroundColor: cat.bgColor || '#ffffff' }}>
           <img
             src={cat.image || "/logo.jpeg"}
             alt={cat.text}
