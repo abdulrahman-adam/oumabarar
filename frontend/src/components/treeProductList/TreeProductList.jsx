@@ -14,7 +14,7 @@ const TreeProductList = () => {
     const lastSlug = pathParts[pathParts.length - 1]?.toLowerCase().trim();
 
     return categories.find(
-      (cat) => (cat.path || "").toLowerCase().trim() === lastSlug
+      (cat) => (cat.path || "").toLowerCase().trim() === lastSlug,
     );
   }, [categories, location.pathname]);
 
@@ -22,7 +22,7 @@ const TreeProductList = () => {
   const subcategories = useMemo(() => {
     if (!currentCategory) return [];
     return categories.filter(
-      (cat) => Number(cat.parentId) === Number(currentCategory.id)
+      (cat) => Number(cat.parentId) === Number(currentCategory.id),
     );
   }, [categories, currentCategory]);
 
@@ -32,7 +32,7 @@ const TreeProductList = () => {
 
     const getAllDescendantIds = (parentId) => {
       const children = categories.filter(
-        (cat) => Number(cat.parentId) === Number(parentId)
+        (cat) => Number(cat.parentId) === Number(parentId),
       );
       let ids = children.map((c) => c.id);
       children.forEach((c) => {
@@ -47,7 +47,8 @@ const TreeProductList = () => {
     ];
 
     return products.filter((product) => {
-      const pCatId = product.categoryId || product.category?.id || product.category;
+      const pCatId =
+        product.categoryId || product.category?.id || product.category;
       return familyIds.includes(Number(pCatId));
     });
   }, [products, currentCategory, categories]);
@@ -61,7 +62,9 @@ const TreeProductList = () => {
 
     while (tempCat) {
       crumbs.unshift(tempCat); // Add to beginning of array
-      const parent = categories.find((c) => Number(c.id) === Number(tempCat.parentId));
+      const parent = categories.find(
+        (c) => Number(c.id) === Number(tempCat.parentId),
+      );
       tempCat = parent;
     }
     return crumbs;
@@ -77,9 +80,6 @@ const TreeProductList = () => {
 
   return (
     <div className="mt-16 px-4 min-h-[60vh] max-w-7xl mx-auto flex flex-col items-center">
-
-      
-      
       {/* BREADCRUMBS */}
       <nav className="w-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-8 self-start">
         <Link to="/" className="hover:text-orange-600 transition-colors">
@@ -87,14 +87,19 @@ const TreeProductList = () => {
         </Link>
         {breadcrumbs.map((cat, index) => {
           // Build the URL link for each breadcrumb step
-          const breadcrumbLink = location.pathname.split(cat.path)[0] + cat.path;
-          
+          const breadcrumbLink =
+            location.pathname.split(cat.path)[0] + cat.path;
+
           return (
             <React.Fragment key={cat.id}>
               <span>/</span>
-              <Link 
+              <Link
                 to={breadcrumbLink}
-                className={index === breadcrumbs.length - 1 ? "text-orange-600 pointer-events-none" : "hover:text-gray-600 transition-colors"}
+                className={
+                  index === breadcrumbs.length - 1
+                    ? "text-orange-600 pointer-events-none"
+                    : "hover:text-gray-600 transition-colors"
+                }
               >
                 {cat.text}
               </Link>
@@ -124,16 +129,16 @@ const TreeProductList = () => {
                 to={`${location.pathname.replace(/\/$/, "")}/${sub.path}`}
                 className="group flex flex-col items-center"
               >
-                <div 
-  className="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden mb-4 shadow-sm border-2 border-transparent group-hover:border-orange-500 transition-all"
-  style={{ backgroundColor: sub.bgColor || '#ffffff' }}
->
-  <img
-    src={sub.image || "/logo.jpeg"}
-    alt={sub.text}
-    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-  />
-</div>
+                <div
+                  className="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-sm border-1 border-transparent group-hover:border-orange-500 transition-all"
+                  style={{ backgroundColor: sub.bgColor || "#ffffff" }}
+                >
+                  <img
+                    src={sub.image || "/logo.jpeg"}
+                    alt={sub.text}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
                 <span className="text-[10px] sm:text-[11px] font-bold text-gray-800 group-hover:text-orange-600 uppercase text-center">
                   {sub.text}
                 </span>
@@ -174,5 +179,3 @@ const TreeProductList = () => {
 };
 
 export default TreeProductList;
-
-

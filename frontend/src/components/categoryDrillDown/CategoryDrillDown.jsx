@@ -8,7 +8,8 @@ const CategoryDrillDown = ({ onClose }) => {
 
   // Filter data
   const parents = categories?.filter((cat) => cat.parentId === null) || [];
-  const children = categories?.filter((cat) => cat.parentId === selectedParent?.id) || [];
+  const children =
+    categories?.filter((cat) => cat.parentId === selectedParent?.id) || [];
 
   const handleParentClick = (parent) => {
     setSelectedParent(parent);
@@ -22,31 +23,37 @@ const CategoryDrillDown = ({ onClose }) => {
 
   return (
     <div className="w-full bg-white overflow-hidden relative min-h-[100px]">
-      
       {/* --- LEVEL 1: PARENT CATEGORIES --- */}
       <div
         className={`w-full transition-all duration-500 ease-in-out transform ${
-          currentLevel === "parents" 
-          ? "translate-x-0 opacity-100" 
-          : "-translate-x-full opacity-0 absolute pointer-events-none"
+          currentLevel === "parents"
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-full opacity-0 absolute pointer-events-none"
         }`}
       >
         <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-6 text-center mt-2">
           Explorer les Collections
         </h3>
-        
-        {/* Horizontal Scroll Row */}
-       <div className="w-full flex justify-center"> {/* Outer wrapper to ensure true centering */}
-  <div className="flex overflow-x-auto pb-8 px-6 gap-6 scrollbar-hide snap-x items-center justify-center sm:justify-center w-full sm:w-auto">
+
+     {/* Horizontal Scroll Row */}
+<div className="w-full">
+  {/* 1. Removed justify-center from this inner div. 
+      2. Added 'after:content-[""] after:block after:w-6' to create a "ghost" spacer at the end.
+      3. Kept flex-nowrap to ensure they stay in a line.
+  */}
+  <div className="flex overflow-x-auto pb-8 px-6 gap-6 scrollbar-hide snap-x items-center no-scrollbar w-full">
     {parents.map((cat) => (
       <button
         key={cat.id}
         onClick={() => handleParentClick(cat)}
         className="flex flex-col items-center group space-y-3 outline-none flex-shrink-0 snap-center"
       >
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gray-50 flex items-center justify-center border-2 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm">
-          <img 
-            src={cat.image || "/logo.jpeg"} 
+        <div
+          className="relative w-48 h-48 rounded-full flex items-center justify-center border-2 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm"
+          style={{ backgroundColor: cat.bgColor || "#f3f4f6" }}
+        >
+          <img
+            src={cat.image || "/logo.jpeg"}
             alt={cat.text}
             className="w-full h-full object-cover"
           />
@@ -56,17 +63,22 @@ const CategoryDrillDown = ({ onClose }) => {
         </span>
       </button>
     ))}
+   
   </div>
 </div>
+
+
+
+
         <div className="h-[1px] bg-gray-100 w-full mb-4"></div>
       </div>
 
       {/* --- LEVEL 2: SUB-CATEGORIES (NOW MATCHES PARENT STYLE) --- */}
       <div
         className={`w-full transition-all duration-500 ease-in-out transform ${
-          currentLevel === "children" 
-          ? "translate-x-0 opacity-100" 
-          : "translate-x-full opacity-0 absolute top-0 pointer-events-none"
+          currentLevel === "children"
+            ? "translate-x-0 opacity-100"
+            : "translate-x-full opacity-0 absolute top-0 pointer-events-none"
         }`}
       >
         <div className="flex items-center justify-between mt-6 mb-8 px-6">
@@ -94,7 +106,7 @@ const CategoryDrillDown = ({ onClose }) => {
               className="flex flex-col items-center group space-y-3 outline-none flex-shrink-0 snap-center"
             >
               {/* Circle styling to match Level 1 */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gray-50 flex items-center justify-center border-2 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm">
+              <div className="relative w-32 h-32 rounded-full bg-gray-50 flex items-center justify-center border-1 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm" style={{ backgroundColor: child.bgColor || '#f3f4f6' }}>
                 <img
                   src={child.image || "/logo.jpeg"}
                   alt={child.text}
@@ -110,15 +122,15 @@ const CategoryDrillDown = ({ onClose }) => {
 
         {/* View All Button */}
         <div className="px-6 pb-10">
-            <button
+          <button
             onClick={() => {
-                navigate(`/products/${selectedParent?.path}`);
-                if (onClose) onClose();
+              navigate(`/products/${selectedParent?.path}`);
+              if (onClose) onClose();
             }}
             className="w-full py-4 border-2 border-dashed border-gray-100 rounded-full text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] hover:bg-gray-50 hover:text-indigo-600 transition-all"
-            >
+          >
             Tout afficher dans {selectedParent?.text}
-            </button>
+          </button>
         </div>
       </div>
     </div>

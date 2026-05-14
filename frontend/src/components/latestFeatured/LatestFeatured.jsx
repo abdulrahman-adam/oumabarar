@@ -23,11 +23,9 @@ const LatestFeatured = () => {
           <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic text-gray-900 leading-none">
             Nouveautés
           </h2>
-          <p className="mt-4 text-gray-500 text-sm md:text-base font-medium leading-relaxed">
-            Découvrez les dernières tendances de la saison. Une fusion parfaite entre 
-            design contemporain et qualité exceptionnelle, conçue pour ceux qui ne 
-            font aucun compromis.
-          </p>
+         <p className="mt-4 text-gray-500 text-sm md:text-base font-medium leading-relaxed">
+  Retrouvez nos collections chez <span className="text-indigo-600 font-semibold">Oumabarar</span> et explorez l'intégralité de notre univers.
+</p>
         </div>
 
         {/* VIEW ALL LINK */}
