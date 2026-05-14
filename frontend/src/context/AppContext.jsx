@@ -289,21 +289,6 @@ const fetchUser = async () => {
 
 
 
-  
-  // --- Fetch Opening Hours & Status ---
-  // const fetchShopStatus = async () => {
-  //   try {
-  //     const { data } = await axios.get("/api/hours/status");
-  //     // This will contain: { status, today, schedule }
-  //     setShopStatus(data);
-  //   } catch (error) {
-  //     console.error("Error fetching shop status:", error);
-  //   }
-  // };
-
-
-
-
 // 2. Add this Helper Function inside AppContextProvider
 const calculateStatusLocally = (schedule) => {
     // Force "Europe/Paris" time calculation
