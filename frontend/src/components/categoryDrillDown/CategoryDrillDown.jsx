@@ -36,23 +36,26 @@ const CategoryDrillDown = ({ onClose }) => {
         </h3>
 
      {/* Horizontal Scroll Row */}
-<div className="w-full text-center" style={{border: "1px solid red"}}>
-  {/* 1. Removed justify-center from this inner div. 
-      2. Added 'after:content-[""] after:block after:w-6' to create a "ghost" spacer at the end.
-      3. Kept flex-nowrap to ensure they stay in a line.
+<div className="w-full text-center">
+  {/* Modifications apportées :
+      1. Ajout de 'justify-center' pour centrer les éléments quand ils ne débordent pas.
+      2. Conservation de 'overflow-x-auto' pour permettre le scroll si nécessaire.
   */}
-  <div className="flex overflow-x-auto pb-8 px-6 gap-6 scrollbar-hide snap-x items-center no-scrollbar w-full">
+  <div className="flex justify-center md:justify-center overflow-x-auto pb-8 px-6 gap-6 scrollbar-hide snap-x items-center no-scrollbar w-full">
     {parents.map((cat) => (
       <button
         key={cat.id}
         onClick={() => handleParentClick(cat)}
         className="flex flex-col items-center group space-y-3 outline-none flex-shrink-0 snap-center"
       >
-      <div className="relative w-32 h-32 sm:w-32 sm:h-32 rounded-full bg-gray-50 flex items-center justify-center border-2 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm" style={{ backgroundColor: cat.bgColor || '#ffffff' }}>
+        <div 
+          className="relative w-48 h-48 rounded-full bg-gray-50 flex items-center justify-center border-2 border-indigo-50 group-hover:border-indigo-600 transition-all duration-300 overflow-hidden shadow-sm" 
+          style={{ backgroundColor: cat.bgColor || '#ffffff' }}
+        >
           <img
             src={cat.image || "/logo.jpeg"}
             alt={cat.text}
-            className="w-full h-full object-cover" // Added mix-blend
+            className="w-full h-full object-cover"
           />
         </div>
         <span className="font-bold text-[11px] uppercase tracking-tight text-gray-700 group-hover:text-indigo-600 transition-colors text-center w-20 line-clamp-1">
@@ -60,10 +63,8 @@ const CategoryDrillDown = ({ onClose }) => {
         </span>
       </button>
     ))}
-   
   </div>
 </div>
-
 
 
 

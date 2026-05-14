@@ -106,7 +106,7 @@ const CategoryHeroSlider = () => {
                 <img 
                   src={sub.image || "/logo.jpeg"} 
                   alt={sub.text}
-                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover/slide:scale-105"
+                  className="w-full h-full object-contain object-center transition-transform duration-1000 group-hover/slide:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#f8f8f8] via-[#f8f8f8]/80 md:via-[#f8f8f8]/30 to-transparent" />
               </div>
