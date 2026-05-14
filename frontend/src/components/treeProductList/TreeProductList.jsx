@@ -131,10 +131,10 @@ const TreeProductList = () => {
               >
                 <div
                   className="w-48 h-48 rounded-full overflow-hidden mb-4 shadow-sm border-1 border-transparent group-hover:border-orange-500 transition-all"
-                  style={{ 
-  backgroundColor: sub?.bgColor?.startsWith('#') 
-    ? sub.bgColor 
-    : '#F3F4F6' // Professional light gray fallback (Tailwind gray-100)
+   style={{ 
+  // Use a neutral gray that looks intentional during loading
+  backgroundColor: sub?.bgColor ? sub.bgColor : "#F9FAFB", 
+  transition: "background-color 0.3s ease-in-out" // Smoothes the transition if it changes
 }}
                 >
                   <img
